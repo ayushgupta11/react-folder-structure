@@ -265,7 +265,8 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
-        "@images" : path.resolve('src/static/media/')
+        "@images" : path.resolve(__dirname, '../src/static/media/'),
+        "@fonts" : path.resolve(__dirname, '../src/static/fonts')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -462,6 +463,13 @@ module.exports = function(webpackEnv) {
               options: {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
+            },
+            {
+              test: /\.(gif|eot|woff|woff2|ttf|svg)$/,
+              loader: require.resolve('file-loader'),
+              options: {
+                name: 'static/fonts/[name].[hash:8].[ext]'
+              }
             },
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.
